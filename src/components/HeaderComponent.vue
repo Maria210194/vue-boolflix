@@ -1,40 +1,58 @@
 <template>
-  <div>
-    <input type="text" v-model="query" />
-    <button @click="queryApi">Search</button>
+  <div class="container">
+    <div class="logoImg">
+      <img src="@/assets/logo.png" alt="Logo" />
+    </div>
+    <div class="inputSearch">
+      <input
+        type="text"
+        v-model="ricercaUtente"
+        @keyup.enter="$emit('ricerca', ricercaUtente)"
+      />
+      <button @click="$emit('ricerca', ricercaUtente)">Search</button>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "HeaderComponent",
   data() {
     return {
-      apiUrl: "https://api.themoviedb.org/3/search/",
-      apiKey: "4efb87d52a46e108a98dadb3dd2051f1",
-
-      query: "",
+      ricercaUtente: "",
     };
-  },
-  methods: {
-    queryApi() {
-      const params = {
-        query: this.query,
-        api_key: this.apiKey,
-      };
-      axios
-        .get(this.apiUrl + "movie", { params })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
   },
 };
 </script>
 
-<style>
+
+<style lang="scss" scope>
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: black;
+  padding: 15px 0;
+
+  .logoImg {
+    width: 220px;
+    img {
+      width: 100%;
+    }
+  }
+  .inputSearch {
+    padding: 5px;
+    input {
+      padding: 5px 10px;
+    }
+    button {
+      margin-left: 5px;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: red;
+      color: white;
+    }
+  }
+}
 </style>

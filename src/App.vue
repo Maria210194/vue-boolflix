@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HeaderComponent @ricerca="queryApi" />
-    <MainComponent />
+    <MainComponent :serieTv="arraySerie" />
   </div>
 </template>
 
@@ -33,13 +33,24 @@ export default {
           language: "it-IT",
         };
 
-        // chiamata:
+        // chiamate per serie e film:
         axios
           .get(this.apiUrl + "tv", { params })
           .then((response) => {
             console.log(response.data.results);
             this.arraySerie = response.data.results;
             console.log(this.arraySerie);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+        axios
+          .get(this.apiUrl + "movie", { params })
+          .then((response) => {
+            console.log(response.data.results);
+            this.arrayFilm = response.data.results;
+            console.log(this.arrayFilm);
           })
           .catch((error) => {
             console.log(error);
@@ -51,11 +62,5 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+@import "@/assets/style/generals";
 </style>
