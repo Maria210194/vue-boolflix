@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <HeaderComponent @ricerca="queryApi" />
-    <MainComponent :serieTv="arraySerie" />
+    <HeaderComponent @search="queryApi" />
+    <MainComponent :films="arrayFilm" :series="arraySerie" />
   </div>
 </template>
 
@@ -25,37 +25,39 @@ export default {
     };
   },
   methods: {
-    queryApi(cerca) {
-      if (cerca !== "") {
-        const params = {
-          query: cerca,
-          api_key: this.apiKey,
-          language: "it-IT",
-        };
+    queryApi(textToSearch) {
+      const params = {
+        query: textToSearch,
+        api_key: this.apiKey,
+        language: "it-IT",
+      };
 
-        // chiamate per serie e film:
-        axios
-          .get(this.apiUrl + "tv", { params })
-          .then((response) => {
-            console.log(response.data.results);
+      // chiamate per serie e film:
+      axios
+        .get(this.apiUrl + "tv", { params })
+        .then((response) => {
+          //console.log(response.data.results);
+          if (response.status === 200) {
             this.arraySerie = response.data.results;
             console.log(this.arraySerie);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
-        axios
-          .get(this.apiUrl + "movie", { params })
-          .then((response) => {
-            console.log(response.data.results);
+      axios
+        .get(this.apiUrl + "movie", { params })
+        .then((response) => {
+          console.log(response);
+          if (response.status === 200) {
             this.arrayFilm = response.data.results;
-            console.log(this.arrayFilm);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
+          }
+          //console.log(this.arrayFilm);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };

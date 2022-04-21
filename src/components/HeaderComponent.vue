@@ -6,10 +6,10 @@
     <div class="inputSearch">
       <input
         type="text"
-        v-model="ricercaUtente"
-        @keyup.enter="$emit('ricerca', ricercaUtente)"
+        placeholder="Ricerca per titolo"
+        v-model="textToSearch"
       />
-      <button @click="$emit('ricerca', ricercaUtente)">Search</button>
+      <button @click="search">Search</button>
     </div>
   </div>
 </template>
@@ -19,21 +19,27 @@ export default {
   name: "HeaderComponent",
   data() {
     return {
-      ricercaUtente: "",
+      textToSearch: "",
     };
+  },
+  methods: {
+    search() {
+      this.$emit("search", this.textToSearch);
+    },
   },
 };
 </script>
 
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  background-color: black;
   padding: 15px 0;
+  background-color: black;
+  color: white;
 
   .logoImg {
     width: 220px;
@@ -45,6 +51,7 @@ export default {
     padding: 5px;
     input {
       padding: 5px 10px;
+      background-color: white;
     }
     button {
       margin-left: 5px;
