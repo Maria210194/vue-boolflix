@@ -3,20 +3,22 @@
     <h2>Series</h2>
     <div class="row">
       <div class="card" v-for="serie in series" :key="serie.name">
-        <h3>{{ serie.name }}</h3>
-        <h4>{{ serie.original_name }}</h4>
-        <p>{{ serie.original_language }}</p>
-        <p>{{ "vote: " + serie.vote_average }}</p>
+        <SerieItem :serie="serie" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import SerieItem from "./SerieItem.vue";
+
 export default {
   name: "SeriesList",
   props: {
     series: Array,
+  },
+  components: {
+    SerieItem,
   },
 };
 </script>
@@ -31,13 +33,14 @@ export default {
   .row {
     display: flex;
     flex-wrap: wrap;
-    text-align: center;
 
     .card {
-      width: 20%;
+      width: 18%;
       padding: 0.5rem;
+      margin: 5px;
       color: white;
       border: 1px solid red;
+      border-radius: 5px;
     }
   }
 }

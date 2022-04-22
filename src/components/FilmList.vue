@@ -4,10 +4,7 @@
       <h2>Film</h2>
       <div class="row">
         <div class="card" v-for="film in films" :key="film.id">
-          <h3>{{ film.title }}</h3>
-          <h4>{{ film.original_title }}</h4>
-          <p>{{ film.original_language }}</p>
-          <p>{{ "vote: " + film.vote_average }}</p>
+          <FilmItem :film="film" />
         </div>
       </div>
     </div>
@@ -15,10 +12,15 @@
 </template>
 
 <script>
+import FilmItem from "./FilmItem.vue";
+
 export default {
   name: "FilmList",
   props: {
     films: Array,
+  },
+  components: {
+    FilmItem,
   },
 };
 </script>
@@ -26,7 +28,7 @@ export default {
 <style lang="scss" scope>
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+
   h2 {
     padding: 10px;
   }
@@ -36,10 +38,12 @@ export default {
     text-align: center;
 
     .card {
-      width: 20%;
+      width: 18%;
       padding: 0.5rem;
+      margin: 5px;
       color: white;
       border: 1px solid red;
+      border-radius: 5px;
     }
   }
 }
