@@ -33,6 +33,7 @@ export default {
   .row {
     display: flex;
     flex-wrap: wrap;
+    margin: 0 auto;
 
     .card {
       width: 18%;
