@@ -25,26 +25,5 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
-.container {
-  max-width: 1200px;
-
-  h2 {
-    padding: 10px;
-  }
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
-
-    .card {
-      width: 18%;
-      padding: 0.5rem;
-      margin: 5px;
-      color: white;
-      border: 1px solid red;
-      border-radius: 5px;
-    }
-  }
-}
+<style lang="scss" scoped>
 </style>

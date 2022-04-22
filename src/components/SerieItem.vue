@@ -2,27 +2,20 @@
   <div>
     <h3>{{ serie.name }}</h3>
     <h4>{{ serie.original_name }}</h4>
-    <p>
-      <img
-        v-if="hasImage"
-        @error="imageError($event)"
-        class="flag"
-        :src="require(`@/assets/img/${serie.original_language}.png`)"
-        :alt="serie.original_language"
-      />
-      <span v-else class="languageError">
-        {{ serie.original_language }}
-      </span>
-    </p>
+    <FlagComponent :flag="serie.original_language" />
     <p>{{ "vote: " + serie.vote_average }}</p>
   </div>
 </template>
 
 <script>
+import FlagComponent from "./FlagComponent.vue";
 export default {
   name: "SerieItem",
   props: {
     serie: Object,
+  },
+  components: {
+    FlagComponent,
   },
   data() {
     return {
@@ -30,6 +23,7 @@ export default {
       disponibleFlags: ["en", "it", "es", "ru", "zh", "fr"],
     };
   },
+
   methods: {
     imageError(event) {
       console.log("errore!");
@@ -37,6 +31,7 @@ export default {
       this.hasError = true;
     },
   },
+
   computed: {
     hasImage() {
       return this.disponibleFlags.includes(this.serie.original_language);
