@@ -6,7 +6,7 @@
         <h3>{{ serie.name }}</h3>
         <h4>{{ serie.original_name }}</h4>
         <p>{{ serie.original_language }}</p>
-        <p>{{ serie.vote_average }}</p>
+        <p>{{ "vote: " + serie.vote_average }}</p>
       </div>
     </div>
   </div>
@@ -25,6 +25,9 @@ export default {
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  h2 {
+    padding: 10px;
+  }
   .row {
     display: flex;
     flex-wrap: wrap;

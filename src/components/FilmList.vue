@@ -7,7 +7,7 @@
           <h3>{{ film.title }}</h3>
           <h4>{{ film.original_title }}</h4>
           <p>{{ film.original_language }}</p>
-          <p>{{ film.vote_average }}</p>
+          <p>{{ "vote: " + film.vote_average }}</p>
         </div>
       </div>
     </div>
@@ -27,6 +27,9 @@ export default {
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  h2 {
+    padding: 10px;
+  }
   .row {
     display: flex;
     flex-wrap: wrap;
