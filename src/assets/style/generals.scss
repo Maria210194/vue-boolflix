@@ -29,3 +29,13 @@
         }
     }
 }
+
+.poster {
+    width: 100px;
+    height: 150px;
+    transition: opacity 0.2s ease-in;
+}
+
+.card:hover .poster {
+    opacity: 15%;
+}

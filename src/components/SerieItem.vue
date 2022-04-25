@@ -1,34 +1,38 @@
 <template>
-  <div>
+  <div class="">
+    <img class="poster" :src="ricercaPoster(serie.poster_path)" :alt="title" />
     <h3>{{ serie.name }}</h3>
     <h4>{{ serie.original_name }}</h4>
     <FlagComponent :flag="serie.original_language" />
-    <p>{{ "vote: " + serie.vote_average }}</p>
+    <StarComponent :corectVote="serie.vote_average" />
   </div>
 </template>
 
 <script>
 import FlagComponent from "./FlagComponent.vue";
+import StarComponent from "./StarComponent.vue";
+
 export default {
   name: "SerieItem",
   props: {
     serie: Object,
+    title: String,
   },
   components: {
     FlagComponent,
+    StarComponent,
   },
-  data() {
-    return {
-      hasError: false,
-      disponibleFlags: ["en", "it", "es", "ru", "zh", "fr"],
-    };
-  },
-
   methods: {
     imageError(event) {
       console.log("errore!");
       event.target.style.display = "none";
       this.hasError = true;
+    },
+    ricercaPoster: function (path) {
+      if (path === null) {
+        return "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png";
+      }
+      return `https://image.tmdb.org/t/p/original${path}`;
     },
   },
 
@@ -43,5 +47,15 @@ export default {
 <style lang="scss" scoped>
 .flag {
   width: 20px;
+}
+
+.poster {
+  width: 100px;
+  height: 150px;
+  transition: opacity 0.2s ease-in;
+}
+
+.card:hover .poster {
+  opacity: 15%;
 }
 </style>
