@@ -2,7 +2,7 @@
   <div class="">
     <img class="poster" :src="ricercaPoster(film.poster_path)" :alt="title" />
     <h3>{{ film.title }}</h3>
-    <h4>{{ film.original_title }}</h4>
+    <h5>{{ film.original_title }}</h5>
     <FlagComponent :flag="film.original_language" />
     <StarComponent :corectVote="film.vote_average" />
   </div>
